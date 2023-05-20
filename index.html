@@ -11,17 +11,39 @@
 
 <body>
     <header>
-      <div class= "large-font">Code Quiz</div>
+      <div>Code Quiz</div>
       <button class="start-button">Start</button>
     </header>
 
     <main>
       <section>
         <div class="quiz question">
-          <div class="question text">question text</div>
+          <div class="question text">
+            <p>question text</p>
+            <ul class="answer options">
+                <li>option 1</li>
+                <li>option 2</li>
+                <li>option 3</li>
+                <li>option 4</li>
+            </ul>
+          </div>
         </div>
       </section>
 
+      <section>
+        <div class="quiz results">
+            <h2>You finished!</h2>
+          <div class="result">
+            <p>your final score is...</p>
+          </div>
+          <div>
+            <!--text entry to input your initials and log it to highscore page-->
+          </div>
+        </div>
+      </section>
+
+
+    <!-- different page altogether with just a link to it in this one?
       <section>
         <div class="score board">
           <div class = "highscores-container">
@@ -38,7 +60,10 @@
           </div>
         </div>
       </section>
+    -->
+
     </main>
+
+    <script scr="./assets/script.js"></script>
   </body>
 </html>
-
