@@ -1,3 +1,9 @@
+//function landing page
+
+//function quiz
+
+//function score submission 
+
 /* 
 var wordBlank = document.querySelector(".word-blanks");
 var win = document.querySelector(".win");

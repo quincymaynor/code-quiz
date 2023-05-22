@@ -6,42 +6,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Code Quiz</title>
-    <link rel="stylesheet" href="./assets/styles.css">  
+    <link rel="stylesheet" href="./assets/css/styles.css">  
 </head>
 
 <body>
-    <header>
-      <div>Code Quiz</div>
-      <button class="start-button">Start</button>
-    </header>
 
-    <main>
-      <section>
-        <div class="quiz question">
-          <div class="question text">
-            <p>question text</p>
-            <ul class="answer options">
-                <li>option 1</li>
-                <li>option 2</li>
-                <li>option 3</li>
-                <li>option 4</li>
-            </ul>
-          </div>
-        </div>
-      </section>
+  <div class="page heading">
 
-      <section>
-        <div class="quiz results">
-            <h2>You finished!</h2>
-          <div class="result">
-            <p>your final score is...</p>
-          </div>
-          <div>
-            <!--text entry to input your initials and log it to highscore page-->
-          </div>
-        </div>
-      </section>
+    <section class="highscores">
+      <a href="./highscores.html">High Scores</a>
+    </section>
+  
+    <section class="timer">
+      <p>Seconds left: <span id="time-left">75</span></p>
+    </section>
+  
+  </div>
 
+  <main class="game-container">
+    
+    <div class="quiz-start">
+      <header>quiz rules:</header>
+      <p>all of the rules</p>
+      <button>start quiz</button>
+    </div>
+
+    <div class="quiz-question">
+      <div class="question-text">
+        <p>question text</p>
+        <ul class="answer-options">
+          <li>option 1</li>
+          <li>option 2</li>
+          <li>option 3</li>
+          <li>option 4</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="quiz-results">
+      <h2>You finished!</h2>
+      <div class="result">
+        <p>your final score is...</p>
+      </div>
+      <div>
+        <!--text entry to input your initials and log it to highscore page-->
+      </div>
+    </div>
+
+  </main>
 
     <!-- different page altogether with just a link to it in this one?
       <section>
@@ -62,8 +74,7 @@
       </section>
     -->
 
-    </main>
-
+    <script src="./assets/js/questions.js"></script>
     <script scr="./assets/script.js"></script>
   </body>
 </html>
