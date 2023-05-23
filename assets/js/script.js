@@ -1,14 +1,13 @@
-/* 
-var wordBlank = document.querySelector(".word-blanks");
-var win = document.querySelector(".win");
-var lose = document.querySelector(".lose");
-var timerElement = document.querySelector(".timer-count");
-var startButton = document.querySelector(".start-button");
+//function landing page
 
-var chosenWord = "";
-var numBlanks = 0;
-var winCounter = 0;
-var loseCounter = 0;
+//function quiz
+
+//function score submission 
+
+/* 
+var timeLeft = document.querySelector("#time-left");
+var startButton = document.querySelector("#start-button");
+
 var isWin = false;
 var timer;
 var timerCount;
