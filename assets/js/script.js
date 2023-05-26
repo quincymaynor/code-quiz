@@ -1,19 +1,22 @@
 var pageHeading = document.querySelector(".page-heading");
 var highscoresPage = document.querySelector(".highscores");
 var timer = document.querySelector(".timer");
-var timeLeft = document.querySelector("#time-left");
+var timeLeft = document.getElementById("time-left");
 
 var gameContainer = document.querySelector(".game-container");
 var quizStart = document.querySelector(".quiz-start");
-var startButton = document.querySelector("#start-button");
+var startButton = document.getElementById("start-button");
 var quizQuestion = document.querySelector(".quiz-question");
 var questionText = document.querySelector(".question-text");
 var answerOptions = document.querySelector(".answer-options");
+//var option0 = document.getElementById("option-0");
+var option1 = document.getElementById("option-1");
+var option2 = document.getElementById("option-2");
+var option3 = document.getElementById("option-3");
 var correctAnswer = document.querySelector(".correct-answer");
 
 var quizResults = document.querySelector(".quiz-results");
 var result = document.querySelector(".result");
-
     
 var question1 = {
     text: "What does the method .pop() do?",
@@ -47,52 +50,70 @@ var question6 = {
 }
 var quizQuestions = [question1, question2, question3, question4, question5, question6]
 
+var currentQuestion = quizQuestions[0];
+
 
 //timer function
 var secondsLeft = 75;
 function setTime() {
-    // Sets interval in variable
+
     var timerInterval = setInterval(function() {
       secondsLeft--;
       timeLeft.textContent = secondsLeft;
   
       if(secondsLeft === 0) {
-        // Stops execution of action at set interval
         clearInterval(timerInterval);
-        // Calls function to end quiz
         endQuiz();
       }
   
     }, 1000);
   }
+
+
+  //current question variable
+
+//function to show qustions
+function pushQuestion() {
+    
+    questionText.textContent = quizQuestions[0].text;
+
+    console.log("pushQuestion", quizQuestions);
+
+    for(index=0; index < 4; index++) {
+        //var optionButton = document.getElementById("option-" + index.toString());
+
+
+        console.log(option0);
+        console.log("option-" + index.toString())
+
+        optionButton.textContent = quizQuestions[0].answer[index];
+    }
+
+}
   
-// Function to end quiz
+//function to end quiz
 function endQuiz() {
-    //record Seconds left
+    //record Seconds left to local storage
     //switch to submission page
 }
 
+//game function
 function playGame() {
     //quizStart and quizResults display none, quizQuestion display content
     setTime();
 
-    //need to iterate through displaying through each question, for loop?
-    for(let index=0; index < quizQuestions.length; index++) {
-        //display questionText[index]
-        questionText.textContent = quizQuestions[index].text;
-        //display possibleAnswers[index] as multiple choice options HOW?????
-        answerOptions.textContent = quizQuestions[index].options;
-        //compare user input with correctAnswer[index], if correct move to next iteration and if incorrect deduct time and move to next iteration
-        answerOptions.addEventListener("click", function(event) {
-            var element = event.target;
+    pushQuestion();
+
+    answerOptions.addEventListener("click", function(event) {
+        var userChoice = event.target.textContent;
     
-            if (element.matches(".correct-answer")) {
-            //move on
-            }else{
-            //deduct time and move on
-            }
-        })
-    }
+        if (userChoice.matches(".correct-answer")) {
+        quizQuestions++;
+        }else{
+        secondsLeft-10;
+        quizQuestions++;
+        }
+    })
 
     endQuiz();
 }
@@ -120,9 +141,49 @@ startButton.addEventListener("click", playGame);
 
 //move to highscores page
 
-/* 
-document.addEventListener("keydown", function(event) {
+/*
+var student = document.getElementById("student-names");
+var grade = document.getElementById("grades");
+var comment = document.getElementById("msg");
+var saveButton = document.getElementById("save");
+var savedName = document.getElementById("saved-name");
+
+saveButton.addEventListener("click", function(event) {
+event.preventDefault();
+
+var studentGrade = {
+  student: student.value,
+  grade: grade.value,
+  comment: comment.value.trim()
+};
+
+localStorage.setItem("studentGrade", JSON.stringify(studentGrade));
+renderMessage();
+
 });
 
-
+function renderMessage() {
+  var lastGrade = JSON.parse(localStorage.getItem("studentGrade"));
+  if (lastGrade !== null) {
+    document.querySelector(".message").textContent = lastGrade.student + 
+    " received a/an " + lastGrade.grade
+  }
+}
 */
+
+function highscores() {
+    var highscoresList = JSON.parse(localStorage.getItem("highscores"));
+
+    for (let index = 0; index < array.length; index++) {
+        
+        const element = highscoresList[index];
+
+        var listItem = document.createElement("li");
+
+        listItem.textContent = element;
+
+        var scoresList = document.getElementById("highscores");
+
+        scoresList.appendChild(listItem);
+    }
+}
