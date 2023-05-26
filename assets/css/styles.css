@@ -42,16 +42,11 @@
     justify-content: space-around;
     text-align: center;
   }
-    
-  header {
-    padding: 40px;
-    border-bottom: 30px;
-  }
   
   button {
     border-radius: 8px;
     cursor: pointer;
-    font-size: 2em;
+    font-size: 1em;
     letter-spacing: 0.21px;
     line-height: 16px;
     max-width: 255px;
