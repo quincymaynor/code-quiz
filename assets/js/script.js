@@ -9,10 +9,6 @@ var startButton = document.getElementById("start-button");
 var quizQuestion = document.querySelector(".quiz-question");
 var questionText = document.querySelector(".question-text");
 var answerOptions = document.querySelector(".answer-options");
-//var option0 = document.getElementById("option-0");
-var option1 = document.getElementById("option-1");
-var option2 = document.getElementById("option-2");
-var option3 = document.getElementById("option-3");
 var correctAnswer = document.querySelector(".correct-answer");
 
 var quizResults = document.querySelector(".quiz-results");
@@ -52,7 +48,6 @@ var quizQuestions = [question1, question2, question3, question4, question5, ques
 
 var currentQuestion = quizQuestions[0];
 
-
 //timer function
 var secondsLeft = 75;
 function setTime() {
@@ -69,24 +64,20 @@ function setTime() {
     }, 1000);
   }
 
-
-  //current question variable
-
 //function to show qustions
 function pushQuestion() {
     
-    questionText.textContent = quizQuestions[0].text;
-
-    console.log("pushQuestion", quizQuestions);
+    questionText.textContent = currentQuestion.text;
 
     for(index=0; index < 4; index++) {
-        //var optionButton = document.getElementById("option-" + index.toString());
+        var listItem = document.createElement("li");
+        var listButton = document.createElement("button");
 
+        listButton.classList.add('answer-btn')
+        listButton.textContent = currentQuestion.options[index];
 
-        console.log(option0);
-        console.log("option-" + index.toString())
-
-        optionButton.textContent = quizQuestions[0].answer[index];
+        listItem.appendChild(listButton);
+        answerOptions.appendChild(listItem);
     }
 
 }
@@ -94,28 +85,34 @@ function pushQuestion() {
 //function to end quiz
 function endQuiz() {
     //record Seconds left to local storage
-    //switch to submission page
+    quizStart.setAttribute("style", "display:none");
+    quizQuestion.setAttribute("style", "display:none");
+    quizResults.setAttribute("style", "display:content");
 }
+
+quizQuestion.setAttribute("style", "display:none");
+quizResults.setAttribute("style", "display:none");
 
 //game function
 function playGame() {
-    //quizStart and quizResults display none, quizQuestion display content
+    quizStart.setAttribute("style", "display:none");
+    quizQuestion.setAttribute("style", "display:content");
+    quizResults.setAttribute("style", "display:none");
+
     setTime();
 
     pushQuestion();
 
     answerOptions.addEventListener("click", function(event) {
-        var userChoice = event.target.textContent;
+        var userChoice = event.target.classList.contains('answer-btn');
     
-        if (userChoice.matches(".correct-answer")) {
+        if (userChoice == correctAnswer) {
         quizQuestions++;
         }else{
         secondsLeft-10;
         quizQuestions++;
         }
     })
-
-    endQuiz();
 }
 
 startButton.addEventListener("click", playGame);
@@ -187,3 +184,43 @@ function highscores() {
         scoresList.appendChild(listItem);
     }
 }
+
+/*
+
+var question = function(text, options, answer) {
+    return {
+        index: 0,
+        text: text,
+        options: options,
+        answer: answer,
+        onAnswer: null
+    }
+}
+
+var quiz = function() {
+    function showQuestion(index) {
+        if (self.question.length <= index) {
+            console.log("all done")
+        }
+        else {
+            questionText.textContent = quizQuestions[index].text;
+            answerOptions.textContent = self.question[index].options;
+        }
+    }
+
+    function doAddQuestion(question) {
+        question.index = self.questions.length;
+        self.questions.push(question);
+        question.onAnswer = function() {
+            showQuestion(question.index + 1)
+        }
+    };
+
+    return {
+        timer: null,
+        questions: [],
+        addQuestion: doAddQuestion
+    }    
+}
+
+*/
